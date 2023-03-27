@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutterquizapp/screen/screen_quiz.dart';
+import 'package:flutter_swiper/flutter_swiper.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -6,6 +8,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<Quiz> quizes = [
+    Quiz.fromMap({
+      'title': 'What is a Map?',
+      'candidates': ['a', 'b', 'c', 'd'],
+      'answer': 0
+    }),
+    Quiz.fromMap({
+      'title': 'What is a Map?',
+      'candidates': ['a', 'b', 'c', 'd'],
+      'answer': 0
+    }),
+    Quiz.fromMap({
+      'title': 'What is a Map?',
+      'candidates': ['a', 'b', 'c', 'd'],
+      'answer': 0
+    }),
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
@@ -53,22 +73,33 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: EdgeInsets.all(width * 0.048),
             ),
             Container(
-                padding: EdgeInsets.only(bottom: width * 0.05),
-                child: ButtonTheme(
-                    minWidth: width * 0.8,
-                    height: height * 0.05,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: ElevatedButton(
-                      child: Text(
-                        "지금 퀴즈 풀기",
-                        style: TextStyle(color: Colors.white),
+              padding: EdgeInsets.only(bottom: width * 0.05),
+              child: ButtonTheme(
+                minWidth: width * 0.8,
+                height: height * 0.05,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ElevatedButton(
+                  child: Text(
+                    "지금 퀴즈 풀기",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.deepPurple),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => QuizScreen(
+                          quizs: quizes,
+                        ),
                       ),
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.deepPurple),
-                      onPressed: () {},
-                    )))
+                    );
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
